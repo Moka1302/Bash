@@ -11,11 +11,13 @@ dest=/home/ubuntu/backup
 archive_filename=file-backup-$time.tar.gz
 LOG_FILE="/home/ubuntu/backup/logfile.log"
 
+
+#===============================================================
+## S3-Bucket
+
 S3_BUCKET="s3-dolfined-course"
 #File to upload on the bucket
 FILE_TO_UPLOAD="$dest/$archive_filename"
-
-## S3-Bucket
 
 #if the aws cli is not installed
 if ! command -v aws &> /dev/null
