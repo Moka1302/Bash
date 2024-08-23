@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Script to back up some files - DolfinED/ Bash Course / Capstone Project1
+
+#this variable stores date in the format: Month-Day-Year-Hour-Minute-Second. To register the date of backing up the file
+time=$(date +%m-%d-%y_%H_%M_%S)
+
+#backup-file value to be decided during execution time by the user
+dir_to_backup=/home/ubuntu/bash
+dest=/home/ubuntu/backup
+archive_filename=file-backup-$time.tar.gz
+LOG_FILE="/home/ubuntu/backup/logfile.log"
+
+S3_BUCKET="s3-dolfined-course"
+#File to upload on the bucket
+FILE_TO_UPLOAD="$dest/$archive_filename"
+
+#if the aws cli is not installed
+if ! command -v aws &> /dev/null
+then
+        echo "aws cli is not installed. Please install it first."
+        exit 2
+fi
+
+
+if [ $? -ne 2 ]
+then
+        if [ -f $archive_filename ]
+        then echo "Error! file $archive_filename already exists" | tee -a "$LOG_FILE"
+        else
+                tar -czvf "$dest/$archive_filename" "$dir_to_backup"
+                echo
+                echo "Backup completed successfully. Backup file: $dest/$archive_filename " | tee -a "$LOG_FILE"
+                echo 
+                aws s3 cp "$FILE_TO_UPLOAD" "s3://$S3_BUCKET/"
+        fi
+fi
+
+#if the previous command succeeded
+if [ $? -eq 0  ] 
+then
+        echo
+        echo "File uploaded successfully on the s3 bucket: $S3_BUCKET"
+else
+        echo "File upload to the s3 bucket has failed."
+fi
+
+
