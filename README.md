@@ -7,5 +7,5 @@ Automation scripts to do 3 main tasks:
 
 2- [Archive users and log files automatically by a cron job.](https://github.com/Moka1302/Bash/blob/main/script-backup.yml)
 
-3- [Upload the files to AWS S3-Bucket.](/main/script-backup.yml#if the aws cli is not installed)
+3- [Upload the files to AWS S3-Bucket.](/script-backup.yml#if the aws cli is not installed)
 
