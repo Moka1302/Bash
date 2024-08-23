@@ -1,7 +1,7 @@
 # Bash
 Automation scripts to do 3 main tasks: 
 
-1- Create users and save their information in a CSV file. 
+1- Create users and save their information in CSV files. 
 
 2- Archive these files automatically by a cron job.
 
