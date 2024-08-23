@@ -1,5 +1,5 @@
 # Bash
-Automation scripts for user accounts management, logging, and backup systems. 
+Automation scripts for user accounts management, logging, and backup systems on AWS. 
 
 The scripts do 4 main tasks: 
 
